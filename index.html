@@ -1,84 +1,77 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <title>Varun Bhandia</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: monospace;
+            font-size: 15px;
+        }
 
-        <!--Style CSS-->
-        <link rel="stylesheet" href="../personal_portifolio/assets/css/style.css">
+        .green {
+            color: green;
+            font-weight: 600;
+        }
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="../personal_portifolio/assets/font-awesome/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="../personal_portifolio/assets/js/main.js"></script>
+        .orange{
+            color: orange;
+            font-weight: 600;
+        }
 
-        <title>Varun Bhandia - Personal Portfolio</title>
-    </head>
-    <body>
-        <!-- Nabvar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Varun Bhandia </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+        .container {
+            padding-top: 30px;
+            padding-right: 50px;
+            padding-left: 50px;
+        }
+    </style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
 
-                </ul>
-            </div>
-        </nav>
-        <!-- Navbar Ends-->
-       
-        <div class="tabcontent" id="home">
-            home
-        </div>
-        <div class="tabcontent" id="about">
-            about
-        </div>
-        <div class="tabcontent" id="work">
-            work
-        </div>
-        <div class="tabcontent" id="contact">
-            contact
-        </div>
-       
 
-        <div class="bottom-nav">
-            <div class="row">
-                <div class="col-xs-3">
-                    <center><i class="fa fa-home apple-blue tablinks" id="home" onclick="openCity(event, 'home')"></i></center>
-                </div>
-                <div class="col-xs-3">
-                    <center><i class="fa fa-user apple-blue tablinks" id="about" onclick="openCity(event, 'about')"></i></center>                    
-                </div>
-                <div class="col-xs-3">
-                    <center><i class="fa fa-briefcase apple-blue tablinks" id="work" onclick="openCity(event, 'work')"></i></center>                    
-                </div>
-                <div class="col-xs-3">
-                    <center><i class="fa fa-envelope apple-blue tablinks" id="contact" onclick="openCity(event, 'contact')"></i></center>
-                </div>
-            </div>
-        </div>
-        <!-- Optional JavaScript -->
-        <script>
+<body>
+    <div class="container">
+        <p class="orange" id="demo"></p>
+        <p class="green" id="greetUser"></p>
+    </div>
 
-        </script>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+</body>
+<script type="text/javascript">
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes();
+    var greetText = '';
+
+    var ip = ''
+    $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function (data) {
+        ip = data.geobytesremoteip;
+        greetText = time + ' -!- friend_[friend_' + ip + '] wants to see my portfolio';
+    });
+
+    var i = 0;
+    var j = 0;
+    var txt = time + ' NAMASTE !!!'; /* The text */
+    var speed = 50; /* The speed/duration of the effect in milliseconds */
+
+    function typeWriter() {
+        console.log(txt.length);
+        if (i < txt.length) {
+            document.getElementById("demo").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            typeWriter2();
+        }
+    }
+
+    function typeWriter2() {
+        if (j < greetText.length) {
+            document.getElementById("greetUser").innerHTML += greetText.charAt(j);
+            j++;
+            setTimeout(typeWriter2, speed);
+        }
+    }
+
+    typeWriter();
+</script>
+
 </html>
-
-
-
-
